@@ -8,27 +8,19 @@ class GamesController < ApplicationController
   end
 
   def score
+    @letters = params[:letters].split
     @attempt = params[:attempt]
-   if @attempt.chars.all? { |letter| @attemps.count(letter) <= @letters.count(letter) }
-     if english_word?(attempt)
-       "well done"
+   if @attempt.chars.all? { |letter| @attempt.count(letter) <= @letters.count(letter) }
+     if english_word?(@attempt)
+       @score = "Well done"
      else
-       "not an english word"
+        @score = "Not an English word"
      end
    else
-      "not in the grid"
+       @score = "Not in the grid"
    end
   end
-
-
-def run_game(attempt)
-  score_and_message = score_and_message(attempt, grid, result[:time])
-  result[:score] = score_and_message.first
-  result[:message] = score_and_message.last
-  result
 end
-
-
 
 def english_word?(word)
   response = open("https://wagon-dictionary.herokuapp.com/#{word}")
