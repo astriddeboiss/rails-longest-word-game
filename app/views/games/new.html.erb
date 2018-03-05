@@ -1,0 +1,11 @@
+<h1>Games#new</h1>
+
+  <%@letters.each do |letter| %>
+  <p><%= letter.capitalize %></p>
+  <% end%>
+  <p>What's the longest word you can find with these letters? </p>
+  <form action="/score" method="post">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <input type="text" name="attempt">
+    <input type="submit">
+  </form>
