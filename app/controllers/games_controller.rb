@@ -22,11 +22,9 @@ class GamesController < ApplicationController
 
 
 def run_game(attempt)
-
   score_and_message = score_and_message(attempt, grid, result[:time])
   result[:score] = score_and_message.first
   result[:message] = score_and_message.last
-
   result
 end
 
